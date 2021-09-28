@@ -1,0 +1,300 @@
+entity CaAccount {
+	tin String maxlength(9),
+    status Integer
+}
+
+entity CaBankDecision {
+	id String maxlength(36) required,
+    ns10Code Integer,
+    ns11Code Integer,
+    np22Pkey String maxlength(32),
+    bodyJudgement String maxlength(16),
+    bodyResult String maxlength(3),
+    bodyState String maxlength(3),
+    bodyAccState String maxlength(3),
+    bodyError String maxlength(5),
+    createdAt LocalDate,
+    updatedAt LocalDate
+}
+
+entity CaCourtDecision{
+	id String maxlength(36) required,
+    ns10Code Integer,
+    ns11Code Integer,
+    signTin String maxlength(9),
+    statementId String maxlength(32),
+    claimId Long,
+    typeId Long,
+    productId Long,
+    na3Code String maxlength(32),
+    createdAt LocalDate,
+    updatedAt LocalDate
+}
+entity CaCourtDocumnet{
+	id String maxlength(36) required,
+    ns10Code Integer,
+    ns11Code Integer,
+	statementId String maxlength(32) required,
+    documentId Long,
+    claimId Long,
+    casenumber String maxlength(32),
+    claimdocumnetId Long,
+    claimdocumentName String maxlength(250),
+    judgeName String maxlength(250),
+    judgeCert Blob,
+    judgeSign Blob,
+    courtId Long,
+    courtName String maxlength(250),
+    outgoingdate LocalDate,
+    fileName String maxlength(200),
+    participantinn String maxlength(9),
+    dateSys LocalDate,
+    whom Integer,
+    fileid Long,
+    answerId Long,
+    fileGuid String maxlength(36)
+}
+
+entity CaCourtstatementStatus{
+	regNumber String maxlength(32),
+    regDate LocalDate,
+    caseNumber String maxlength(32),
+    responsible String maxlength(250),
+    declineDate LocalDate,
+    hearingDate LocalDate,
+    defitionDate LocalDate,
+    result String maxlength(500),
+    status String maxlength(250),
+    fulFilledTotal Long,
+    fulFilledFine Long,
+    stateDutyPayable Long,
+    stateDutyPayer String maxlength(256),
+    deferReason String maxlength(250),
+    declineReason String maxlength(500),
+    statementId String maxlength(32),
+    statusCode Integer,
+    dateSys LocalDate,
+    pkey String maxlength(36)
+    }
+    
+entity CaDecisionClose{
+	objId Long,
+    gniCode String maxlength(4),
+    status Integer,
+    edoAssignedStaff String maxlength(9),
+    edoInitiativeStaff String maxlength(9),
+    edoAgreedStaff String maxlength(9),
+    dateCreate LocalDate,
+    dateUpdate LocalDate,
+    userId String maxlength(32),
+    edoId Long,
+    pkey String maxlength(32) required
+    }
+    
+entity CaDecisionOpen{
+	objId Long,
+    gniCode String maxlength(4),
+    status Integer,
+    edoAssignedStaff String maxlength(9),
+    edoInitiativeStaff String maxlength(9),
+    edoAgreedStaff String maxlength(9),
+    dateCreate LocalDate,
+    dateUpdate LocalDate,
+    userId String maxlength(32),
+    edoId Long,
+    pkey String maxlength(32) required
+    }
+entity CaDocsData{
+	objId Long,
+    docType Integer,
+    docNo String maxlength(20),
+    docDate LocalDate,
+    dateCreate LocalDate,
+    dateUpdate LocalDate,
+    userId String maxlength(32),
+    edoId Long,
+    pkey String maxlength(32) required
+}
+
+entity CaDocsType{
+	code Integer,
+    name String maxlength(100)
+}
+
+entity CaEdoQueue{
+	cardsType Integer,
+    cardsId Long,
+    regNo String maxlength(20),
+    regDate LocalDate,
+    fromNo String maxlength(20),
+    fromDate LocalDate,
+    mainfilePkey String maxlength(50),
+    mainfileContenttype String maxlength(100),
+    applicationfilePkey String maxlength(50),
+    applicationfileContenttype String maxlength(100),
+    errorText String maxlength(200),
+    sendType String maxlength(200),
+    dateCreate LocalDate,
+    dateUpdate LocalDate,
+    userId String maxlength(32),
+    pkey String maxlength(32) required,
+    docNo String maxlength(20),
+    docDate LocalDate,
+    sendCabinet Integer
+}
+
+entity CaMainLog{
+	id Long,
+    ns10Code Integer,
+    ns11Code Integer,
+    tin  String maxlength(9),
+    na2Code Integer,
+    year Integer,
+    pType  String maxlength(1),
+    period Integer,
+    ownNs10Code Integer,
+    ownNs11Code Integer,
+    state Integer,
+    report Integer,
+    notifNum Long,
+    notifDate LocalDate,
+	decCloseNum Long,
+    decCloseDate LocalDate,
+    decCloseNotifNum Long,
+    decCloseNotifDate LocalDate,
+    decOpenNum Long,
+    decOpenDate LocalDate,
+    statNum Long,
+    statDate LocalDate,
+    statNotifNum Long,
+    statNotifDate LocalDate,
+    userId  String maxlength(32),
+    createdAt LocalDate,
+    updatedAt LocalDate,
+    name  String maxlength(255),
+    pkey  String maxlength(36) required
+}
+
+entity CaMain{
+	id Long required,
+    ns10Code Integer,
+    ns11Code Integer,
+    tin  String maxlength(9),
+    na2Code Integer,
+    year Integer,
+    pType  String maxlength(1),
+    period Integer,
+    ownNs10Code Integer,
+    ownNs11Code Integer,
+    state Integer,
+    report Integer,
+    userId  String maxlength(32),
+    createdAt LocalDate,
+    updatedAt LocalDate,
+    name  String maxlength(255),
+    courtApiId  Long,
+    address String maxlength(255),
+    isExistCabinet Integer,
+    fileGuidReciept String maxlength(36),
+    pinfl String maxlength(14),
+    status Integer,
+    isDeleted Integer,
+    objType Integer
+}
+entity CaPeriodType{
+	pType String maxlength(1),
+    period Integer,
+    name String maxlength(60),
+    id Integer
+}
+entity CaSendBank{
+	ns10Code Integer,
+    ns11Code Integer,
+    ndoc Long,
+    ddoc LocalDate,
+    nss14Code String maxlength(2),
+    tin String maxlength(9),
+    state Integer,
+    na3Code String maxlength(32),
+    dateSys LocalDate,
+    pkey String maxlength(32) required,
+    errorCode Integer,
+    basis String maxlength(100),
+    type Integer,
+    caMainId Long
+}
+
+entity CaStateType{
+	code Integer,
+    name String maxlength(60)
+}
+entity CourtStatement{
+	statementId String maxlength(32) required,
+    docNumber String maxlength(10),
+    docDate LocalDate,
+    deliveryType Integer,
+    claimType Integer,
+    claimCategory Integer,
+    price String maxlength(20),
+    postFree String maxlength(20),
+    isCabinetexist Integer,
+    tin String maxlength(9),
+    ns10Code Integer,
+    ns11Code Integer,
+    region Integer,
+    rs String maxlength(30),
+    bank String maxlength(255),
+    address String maxlength(255),
+    orgName String maxlength(255),
+    mailingAddress String maxlength(55),
+    phone String maxlength(13),
+    director String maxlength(60),
+    mfo String maxlength(5),
+    ns3 Integer,
+    jbTin String maxlength(9),
+    jbNs10Code Integer,
+    jbNs11Code Integer,
+    jbRegion Integer,
+    jbRs String maxlength(30),
+    jbBank String maxlength(255),
+    jbAddress String maxlength(255),
+    jbOrgName String maxlength(255),
+    jbMailingAddress String maxlength(55),
+    jbPhone String maxlength(13),
+    jbDirector String maxlength(60),
+    jbMfo String maxlength(5),
+    jbNs3 Integer,
+    jbNa1 Integer,
+    courtApi Integer,
+    fileGuid String maxlength(36),
+    createDate LocalDate,
+    status String maxlength(15)
+}
+application {
+  config {
+    baseName farruxakaapi,
+    applicationType monolith,
+    packageName uz.sicnt,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework angular
+  }
+  entities *
+}
+// Set pagination options
+paginate all with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
+
+
+
+
+
+
